@@ -1,7 +1,9 @@
 document.getElementById('flip-button').onclick = function() { front = !front; };
 let front = false;
 
-var constraints = { video: { facingMode: (front? "user" : "environment") } };
+var constraints = { video: { facingMode: (front? "user" : "environment"),
+width: { max: 720},
+height: {max: 350 } } };
 
 navigator.mediaDevices.getUserMedia(constraints)
 .then(function(mediaStream) {
