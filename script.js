@@ -1,4 +1,5 @@
 const flipButton = document.getElementById('flip-button')
+const video = document.querySelector('#video');
 let front = false;
 
 flipButton.addEventListener('click', () => {
@@ -7,13 +8,11 @@ flipButton.addEventListener('click', () => {
 })
 
 const constraints = { video: { facingMode: (front? "user" : "environment"),
-width: { max: 720},
-height: {max: 350 },} };
+width: 350, height: 350, video: true } };
 
 navigator.mediaDevices.getUserMedia(constraints)
 .then(function(stream) {
     console.log(stream);
-    const video = document.querySelector('#video');
     video.srcObject = stream;
     video.onloadedmetadata = function(e) {
         video.play();
