@@ -8,10 +8,73 @@
 </head>
 <body>
     <video id="video"></video>
-    <canvas id="canvas"></canvas>
+    <div id="frontal"></div>
+    <div id="res"></div>
+
     <button id="camera">camera</button>
     <button id="flip-button">Trocar camera</button>
 
-    <script src="script.js"></script>
+    <script src="quagga.min.js"></script>
+    
+    <script>
+        const flipButton = document.getElementById('flip-button')
+        const video = document.querySelector('video');
+        const res = document.querySelector("#res")
+        let front = false;
+
+        flipButton.addEventListener('click', () => {
+            front = !front;
+            console.log('camera mudada')
+        })
+
+        const constraints = { video: { facingMode: "environment",
+        width: 350, height: 350,} };
+
+        navigator.mediaDevices.getUserMedia(constraints)
+        .then(function(mediaStream) {
+            console.log(mediaStream);
+            video.srcObject  = mediaStream;
+            video.play();
+        //     video.onloadedmetadata = function(e) {
+        //   };
+        })
+        .catch(function(err) { console.log(err.name + ": " + err.message); }); // always check for errors at the end.
+
+        const camera = document.querySelector("#camera")
+
+        camera.addEventListener("click", () => {
+            const canvas = document.querySelector("#canvas")
+            const context = canvas.getContext("2d")
+
+            canvas.height = video.videoHeight
+            canvas.width = video.videoWidth
+            context.drawImage(video, 0, 0)
+        })
+
+
+        Quagga.init({
+            inputStream : {
+                name : "Live",
+                type : "LiveStream",
+                target: document.querySelector('#video')    // Or '#yourElement' (optional)
+            },
+            decoder : {
+                readers : ["code_128_reader"]
+            }
+            }, function(err) {
+                if (err) {
+                    console.log(err);
+                    return
+                }
+                console.log("Initialization finished. Ready to start");
+                Quagga.start();
+            }
+        );
+
+        Quagga.onDetected((data) => {
+            console.log(data);
+            res.innerHTML = data.codeResult.code
+        })
+    </script>
 </body>
 </html>
