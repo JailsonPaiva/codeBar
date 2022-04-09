@@ -11,7 +11,7 @@
     <div id="frontal"></div>
     <div id="res"></div>
 
-    <button id="camera">camera</button>
+    <button id="camera">acessar camera</button>
     <button id="flip-button">Trocar camera</button>
 
     <script src="quagga.min.js"></script>
@@ -36,6 +36,7 @@
         const constraints = window.constraints = {  
             audio: false,
             video: true
+
         }
 
 
@@ -47,26 +48,26 @@
 
         }
 
-        navigator.mediaDevices.getUserMedia(constraints)
-        .then(function(mediaStream) {
-            console.log(mediaStream);
-            video.srcObject = window.URL.createObjectURL(mediaStream);
-            video.play();
+        // navigator.mediaDevices.getUserMedia(constraints)
+        // .then(function(mediaStream) {
+        //     console.log(mediaStream);
+        //     video.srcObject = window.URL.createObjectURL(mediaStream);
+        //     video.play();
         //     video.onloadedmetadata = function(e) {
         //   };
-        })
-        .catch(function(err) { console.log(err.name + ": " + err.message); }); // always check for errors at the end.
+        // })
+        // .catch(function(err) { console.log(err.name + ": " + err.message); }); // always check for errors at the end.
 
-        const camera = document.querySelector("#camera")
+        // const camera = document.querySelector("#camera")
 
-        camera.addEventListener("click", () => {
-            const canvas = document.querySelector("#canvas")
-            const context = canvas.getContext("2d")
+        // camera.addEventListener("click", () => {
+        //     const canvas = document.querySelector("#canvas")
+        //     const context = canvas.getContext("2d")
 
-            canvas.height = video.videoHeight
-            canvas.width = video.videoWidth
-            context.drawImage(video, 0, 0)
-        })
+        //     canvas.height = video.videoHeight
+        //     canvas.width = video.videoWidth
+        //     context.drawImage(video, 0, 0)
+        // })
 
         async function init(e) {
             try {
@@ -85,7 +86,7 @@
             inputStream : {
                 name : "Live",
                 type : "LiveStream",
-                target: document.querySelector('#video')    // Or '#yourElement' (optional)
+                target: document.querySelector('#frontal')    // Or '#yourElement' (optional)
             },
             decoder : {
                 readers : ["code_128_reader"]
