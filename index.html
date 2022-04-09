@@ -21,6 +21,8 @@
         const video = document.querySelector('video');
         const res = document.querySelector("#res")
         let front = false;
+        video.setAttribute("playsinline", true);
+        video.setAttribute("controls", true);
 
         flipButton.addEventListener('click', () => {
             front = !front;
@@ -35,7 +37,7 @@
         const constraints ={ 
             audio: false,
             video: {
-                facingMode: { exact: "environment"},
+                facingMode: "environment",
                 width: 350, 
                 height: 350,
             }
