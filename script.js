@@ -7,10 +7,10 @@ flipButton.addEventListener('click', () => {
     console.log('camera mudada')
 })
 
-const constraints = { video: { facingMode: (front? "user" : "environment"),
-width: 350, height: 350, video: true } };
+const constraints = { video: { facingMode: "environment",
+width: 350, height: 350,} };
 
-navigator.mediaDevices.getUserMedia({video: true})
+navigator.mediaDevices.getUserMedia(constraints)
 .then(function(mediaStream) {
     console.log(mediaStream);
     video.srcObject  = mediaStream;
