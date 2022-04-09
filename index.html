@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <video id="video"></video>
+    <video id="video" autoplay="true"></video>
     <div id="frontal"></div>
     <div id="res"></div>
 
@@ -27,13 +27,24 @@
             console.log('camera mudada')
         })
 
-        const constraints = { video: { facingMode: "environment",
-        width: 350, height: 350,} };
+
+
+        // const constraints = { video: { facingMode: "environment",
+        // width: 350, height: 350,} };
+
+        const constraints ={ 
+            audio: false,
+            video: {
+                facingMode: { exact: "environment"},
+                width: 350, 
+                height: 350,
+            }
+        }
 
         navigator.mediaDevices.getUserMedia(constraints)
         .then(function(mediaStream) {
             console.log(mediaStream);
-            video.srcObject  = mediaStream;
+            video.srcObject = window.URL.createObjectURL(mediaStream);
             video.play();
         //     video.onloadedmetadata = function(e) {
         //   };
