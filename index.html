@@ -27,8 +27,8 @@
         const flipButton = document.getElementById('flip-button')
         const res = document.querySelector("#res")
         let front = false;
-        video.setAttribute("playsinline", true);
-        video.setAttribute("controls", true);
+        // video.setAttribute("playsinline", true);
+        // video.setAttribute("controls", true);
 
         // flipButton.addEventListener('click', () => {
         //     front = !front;
@@ -47,13 +47,13 @@
         // }
 
 
-        // function HandleSuccess(stream) {
-        //     const video = document.querySelector('video');
-        //     const videoTracks = stream.getVideoTracks();
-        //     window.stream = stream;
-        //     video.srcObject = stream;
+        function HandleSuccess(stream) {
+            const video = document.querySelector('video');
+            const videoTracks = stream.getVideoTracks();
+            window.stream = stream;
+            video.srcObject = stream;
 
-        // }
+        }
 
         // navigator.mediaDevices.getUserMedia(constraints)
         // .then(function(mediaStream) {
@@ -76,15 +76,15 @@
         //     context.drawImage(video, 0, 0)
         // })
 
-        // async function init(e) {
-        //     try {
-        //         const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        //         HandleSuccess(stream);
-        //         e.target.disabled = true;
-        //     } catch (e) {
-        //         console.log(e)
-        //     }
-        // }
+        async function init(e) {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                HandleSuccess(stream);
+                e.target.disabled = true;
+            } catch (e) {
+                console.log(e)
+            }
+        }
 
         // document.querySelector("#camera").addEventListener("click", e => init(e));
 
