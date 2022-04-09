@@ -11,12 +11,12 @@ flipButton.addEventListener('click', () => {
 // width: 350, height: 350, video: true } };
 
 navigator.mediaDevices.getUserMedia({video: true})
-.then(function(stream) {
-    console.log(stream);
-    video.srcObject = stream;
-    video.onloadedmetadata = function(e) {
-        video.play();
-  };
+.then(function(mediaStream) {
+    console.log(mediaStream);
+    video.srcObject  = mediaStream;
+    video.play();
+//     video.onloadedmetadata = function(e) {
+//   };
 })
 .catch(function(err) { console.log(err.name + ": " + err.message); }); // always check for errors at the end.
 
