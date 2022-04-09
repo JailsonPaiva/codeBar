@@ -1,5 +1,5 @@
 const flipButton = document.getElementById('flip-button')
-const video = document.querySelector('#video');
+const video = document.querySelector('video');
 let front = false;
 
 flipButton.addEventListener('click', () => {
@@ -20,4 +20,13 @@ navigator.mediaDevices.getUserMedia({video: true})
 })
 .catch(function(err) { console.log(err.name + ": " + err.message); }); // always check for errors at the end.
 
+const camera = document.querySelector("#camera")
 
+camera.addEventListener("click", () => {
+    const canvas = document.querySelector("#canvas")
+
+    canvas.height = "200px"
+    canvas.width = "200px"
+    const context = canvas.getContext("2d")
+    context.drawImage(video, 0, 0)
+})
