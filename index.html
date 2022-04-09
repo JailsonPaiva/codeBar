@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-    <!-- <video id="video" autoplay="true"></video> -->
+    
     <div id="frontal"></div>
     <div id="res"></div>
 
@@ -27,8 +27,6 @@
         const flipButton = document.getElementById('flip-button')
         const res = document.querySelector("#res")
         let front = false;
-        // video.setAttribute("playsinline", true);
-        // video.setAttribute("controls", true);
 
         // flipButton.addEventListener('click', () => {
         //     front = !front;
@@ -48,7 +46,7 @@
 
 
         function HandleSuccess(stream) {
-            const video = document.querySelector('video');
+            const video = document.querySelector('#frontal');
             const videoTracks = stream.getVideoTracks();
             window.stream = stream;
             video.srcObject = stream;
@@ -86,7 +84,7 @@
             }
         }
 
-        // document.querySelector("#camera").addEventListener("click", e => init(e));
+        document.querySelector("#camera").addEventListener("click", e => init(e));
 
 
         Quagga.init({
