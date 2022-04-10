@@ -111,3 +111,36 @@ header h4 {
 
     cursor: pointer;
 }
+
+/*
+    ESTILO FOOTER
+*/
+
+
+footer {
+    width: 100%;
+    height: 45px;
+
+    /* margin-bottom: 10px; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    position: fixed;
+    bottom: 0;
+
+    background: rgba(0, 0, 0, 0.872);
+}
+
+footer span {
+    margin-bottom: -10px;
+    color: #fff;
+
+}
+
+footer img {
+    height: 50px;
+}
+
